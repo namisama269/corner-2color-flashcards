@@ -38,10 +38,29 @@ my_model = genanki.Model(
     templates=[
         {
             'name': 'Card 1',
-            'qfmt': '{{QuestionImage}}',
-            'afmt': '{{QuestionImage}}<hr id="answer">{{AnswerImage}}',
+            'qfmt': '<div class="image-container">{{QuestionImage}}</div>',
+            'afmt': '<div class="image-container">{{QuestionImage}}</div><hr id="answer"><div class="image-container">{{AnswerImage}}</div>',
         },
-    ]
+    ],
+    css="""
+    .card {
+        font-family: arial;
+        font-size: 20px;
+        text-align: center;
+        color: black;
+        background-color: white;
+    }
+    .image-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+    }
+    img {
+        max-width: 100%;
+        max-height: 100%;
+    }
+    """
 )
 
 def create_anki_image_deck(question_image_dir, answer_image_dir, deck_name):
